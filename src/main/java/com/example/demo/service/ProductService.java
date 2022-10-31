@@ -28,8 +28,12 @@ public class ProductService {
     }
 
 
-    public Product getProductById (int id){
-        return repository.findById(id).orElse(null);
+//    public Product getProductById (int id){
+//        return repository.findById(id).orElse(null);
+//    }
+//
+    public Object getOne(int id){
+        return  repository.findById(id);
     }
 
     public Product getProductByName(String name){
