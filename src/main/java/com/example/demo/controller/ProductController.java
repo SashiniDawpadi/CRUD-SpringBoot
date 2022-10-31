@@ -3,9 +3,11 @@ package com.example.demo.controller;
 import com.example.demo.entity.Product;
 import com.example.demo.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 
 @RestController
 public class ProductController {
@@ -27,10 +29,17 @@ public class ProductController {
         return productService.getProducts();
     }
 
-    @GetMapping("/product/{id}")
-    public Product findProductById(@PathVariable int id) {
-        return productService.getProductById(id);
+//    @GetMapping("/product/{id}")
+//    public Product findProductById(@PathVariable int id) {
+//        return productService.getProductById(id);
+//    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<Object> getProductById(@PathVariable int id ){
+        Object product = productService.getOne(id);
+        return  ResponseEntity.ok(product);
     }
+
 
     @GetMapping("/product/{name}")
     public Product findProductByName(@PathVariable String name) {
